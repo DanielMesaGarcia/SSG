@@ -20,9 +20,35 @@
 
 from odoo import models, fields, api
 
-class SsgSsg(models.Model):
-    _name = 'ssg.ssg'
-    _description = 'ssg.ssg'
-    name = fields.Integer(string="Número incidencia")
-    fecha = fields.Date(string="Fecha")
-    description = fields.Char(string="Usuario que atiende la incidencia.")
+class EmpresaContratadora(models.Model):
+    _name = 'ssg.empresa_contratadora'
+    _description = 'Empresas contratadoras que encargan proyectos'
+
+    name = fields.Char(string='Nombre de la Empresa', required=True)
+    proyectos_contratados = fields.One2many('ssg.proyecto', 'empresa_contratadora_id', string='Proyectos Contratados')
+
+class Proyecto(models.Model):
+    _name = 'ssg.proyecto'
+    _description = 'Proyectos de desarrollo de software'
+
+    name = fields.Char(string='Nombre del Proyecto', required=True)
+    empresa_contratadora_id = fields.Many2one('ssg.empresa_contratadora', string='Empresa Contratadora')
+    jefe_proyecto_id = fields.Many2one('res.users', string='Jefe de Proyecto')
+    analistas_ids = fields.Many2many('res.users', string='Analistas Asignados')
+    tareas_ids = fields.One2many('ssg.tarea', 'proyecto_id', string='Tareas del Proyecto')
+
+class Tarea(models.Model):
+    _name = 'ssg.tarea'
+    _description = 'Tareas dentro de los proyectos'
+
+    name = fields.Char(string='Nombre de la Tarea', required=True)
+    proyecto_id = fields.Many2one('ssg.proyecto', string='Proyecto')
+    analista_id = fields.Many2one('res.users', string='Analista Asignado')
+    subtareas_ids = fields.One2many('ssg.subtarea', 'tarea_id', string='Subtareas de la Tarea')
+
+class Subtarea(models.Model):
+    _name = 'ssg.subtarea'
+    _description = 'Subtareas de las tareas'
+
+    name = fields.Char(string='Nombre de la Subtarea', required=True)
+    tarea_id = fields.Many2one('ssg.tarea', string='Tarea')
