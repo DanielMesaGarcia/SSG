@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+ <data>
+ <!-- GRUPO GESTOR DE INCIDENCIAS -->
+ <record id="grupo_gestor" model="res.groups">
+ <field name="name">Gestor ssg</field>
+ <field name="comment">Perfil gestor de acceso a las ssg</field>
+ </record>
+ <!-- GRUPO OPERARIO DE INCIDENCIAS -->
+ <record id="grupo_operario" model="res.groups">
+ <field name="name">Operario ssg</field>
+ <field name="comment">Perfil operario de acceso a las ssg</field>
+ </record>
+<record id="base.user_admin" model="res.users">
+<field name="groups_id" eval="[(4, ref('ssg.grupo_gestor'))]"/>
+</record>
+ </data>
+ </odoo>

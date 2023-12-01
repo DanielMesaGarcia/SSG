@@ -1,0 +1,32 @@
+<odoo>
+  <data>
+    <record model="ir.ui.view" id="ssg.ssg_tree">
+      <field name="name">ssg.ssg.tree</field>
+      <field name="model">ssg.ssg</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="fecha"/>
+          <field name="description"/>
+        </tree>
+      </field>
+    </record>
+
+    <!-- Resto de las definiciones de vistas -->
+
+    <record model="ir.actions.act_window" id="ssg_ssg_action_window">
+      <field name="name">ssg.ssg.action.window</field>
+      <field name="res_model">ssg.ssg</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+
+    <menuitem name="SSG" id="ssg.menu_root" sequence="1"/>
+    <menuitem name="SSG" id="ssg.menu_ssg"
+              parent="ssg.menu_root" sequence="1"/>
+
+    <menuitem name="SSG" id="ssg.menu_ssg_ssg"
+              parent="ssg.menu_ssg" action="ssg_ssg_action_window" sequence="1"/>
+
+  </data>
+</odoo>

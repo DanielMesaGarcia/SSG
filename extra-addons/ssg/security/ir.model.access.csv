@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_ssg_ssg_gestor,ssg.ssg.gestor,model_ssg_ssg,ssg.grupo_gestor,1,1,1,1
+access_ssg_ssg_operario,ssg.ssg.operario,model_ssg_ssg,ssg.grupo_operario,1,0,0,0
