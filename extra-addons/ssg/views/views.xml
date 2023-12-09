@@ -74,8 +74,9 @@
                     <group>
                         <field name="name"/>
                         <field name="proyecto_id"/>
-                        <field name="analista_id"/>
+                        <field name="programador_ids"/>
                         <field name="subtareas_ids"/>
+                        <field name="total_subtareas"/>
                     </group>
                 </form>
             </field>

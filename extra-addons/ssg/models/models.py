@@ -18,6 +18,8 @@
 #             record.value2 = float(record.value) / 100
 
 
+# models.py
+
 from odoo import models, fields, api
 
 class EmpresaContratadora(models.Model):
@@ -36,6 +38,11 @@ class Proyecto(models.Model):
     jefe_proyecto_id = fields.Many2one('res.users', string='Jefe de Proyecto')
     analistas_ids = fields.Many2many('res.users', string='Analistas Asignados')
     tareas_ids = fields.One2many('ssg.tarea', 'proyecto_id', string='Tareas del Proyecto')
+    state = fields.Selection([
+        ('analisis', 'En Análisis'),
+        ('desarrollo', 'En Desarrollo'),
+        ('finalizado', 'Finalizado'),
+    ], default='analisis', string='Estado del Proyecto')
 
 class Tarea(models.Model):
     _name = 'ssg.tarea'
@@ -43,8 +50,16 @@ class Tarea(models.Model):
 
     name = fields.Char(string='Nombre de la Tarea', required=True)
     proyecto_id = fields.Many2one('ssg.proyecto', string='Proyecto')
-    analista_id = fields.Many2one('res.users', string='Analista Asignado')
+    programador_ids = fields.Many2one('res.users', string='Programador Asignado')
     subtareas_ids = fields.One2many('ssg.subtarea', 'tarea_id', string='Subtareas de la Tarea')
+    groups = 'ssg.group_programador'
+    total_subtareas = fields.Integer(string='Total de Subtareas', compute='_compute_total_subtareas', store=True)
+
+    @api.depends('subtareas_ids')
+    def _compute_total_subtareas(self):
+        for tarea in self:
+            tarea.total_subtareas = len(tarea.subtareas_ids)
+
 
 class Subtarea(models.Model):
     _name = 'ssg.subtarea'
@@ -52,3 +67,4 @@ class Subtarea(models.Model):
 
     name = fields.Char(string='Nombre de la Subtarea', required=True)
     tarea_id = fields.Many2one('ssg.tarea', string='Tarea')
+
