@@ -27,6 +27,7 @@
         'security/ir.model.access.csv',
         'views/views.xml',
         'views/templates.xml',
+        'reports/proyecto_report.xml',
         
         # 'security/incidencias_reglas_registro.xml',
         # 'reports/municipios_report.xml',

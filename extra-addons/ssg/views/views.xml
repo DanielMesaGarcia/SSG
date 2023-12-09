@@ -49,6 +49,7 @@
                         <field name="jefe_proyecto_id"/>
                         <field name="analistas_ids"/>
                         <field name="tareas_ids"/>
+                        <field name="state"/>
                     </group>
                 </form>
             </field>
