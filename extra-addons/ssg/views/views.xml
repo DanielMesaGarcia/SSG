@@ -117,5 +117,30 @@
         <menuitem name="Subtareas" id="ssg.menu_subtarea"
                   parent="ssg.menu_ssg" action="ssg_subtarea_action_window" sequence="5"/>
 
+
+        <record id="view_project_form_inherited" model="ir.ui.view">
+        <field name="name">project.form.inherited</field>
+        <field name="model">project.task</field>
+        <field name="inherit_id" ref="project.view_task_form2"/>
+        <field name="arch" type="xml">
+            <data>
+                <!-- Puedes agregar o modificar campos aquí -->
+                <field name="kanban_state" position="after">
+                    <!-- Agrega tu campo personalizado aquí -->
+                    <field name="custom_field" string="Campo Personalizado"/>
+                </field>
+            </data>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_view_project_task_form_inherited">
+            <field name="name">action_view_project_task_form_inherited</field>
+            <field name="res_model">project.task</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+    <menuitem name="Tarea personalizada" id="ssg.inherited"
+                  parent="ssg.menu_ssg" action="action_view_project_task_form_inherited" sequence="6"/>
     </data>
+
 </odoo>

@@ -71,4 +71,4 @@ class Subtarea(models.Model):
 class MiProyectoTask(models.Model):
     _inherit = 'project.task'
 
-    campo_personalizado = fields.Char(string='Campo Personalizado')
+    custom_field = fields.Char(string='custom_field')
