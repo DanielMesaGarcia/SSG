@@ -68,3 +68,7 @@ class Subtarea(models.Model):
     name = fields.Char(string='Nombre de la Subtarea', required=True)
     tarea_id = fields.Many2one('ssg.tarea', string='Tarea')
 
+class MiProyectoTask(models.Model):
+    _inherit = 'project.task'
+
+    campo_personalizado = fields.Char(string='Campo Personalizado')

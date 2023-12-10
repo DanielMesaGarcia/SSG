@@ -28,6 +28,7 @@
         'views/views.xml',
         'views/templates.xml',
         'reports/proyecto_report.xml',
+        'security/ssg_regla_registro.xml',
         
         # 'security/incidencias_reglas_registro.xml',
         # 'reports/municipios_report.xml',
